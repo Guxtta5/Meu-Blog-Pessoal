@@ -57,7 +57,7 @@ public class UsuarioControllerTest {
 	}
 	
 	@Test
-	@DisplayName("Nção deve permitir duplicaçao de usuario")
+	@DisplayName("Não deve permitir duplicaçao de usuario")
 	public void naoDeveDuplicarUsuario() {
 		
 		usuarioService.cadastrarUsuario(new Usuario(0L,
@@ -67,7 +67,7 @@ public class UsuarioControllerTest {
 				"Matheus Barbosa", "matheus_barbosa@emal.com.br", "21102003", "-"));
 		
 		ResponseEntity<Usuario> corpoResposta = testRestTemplate
-				.exchange("/usuario/cadastrar", HttpMethod.POST, corpoRequisicao, Usuario.class);
+				.exchange("/usuarios/cadastrar", HttpMethod.POST, corpoRequisicao, Usuario.class);
 		
 		assertEquals(HttpStatus.BAD_REQUEST, corpoResposta.getStatusCode());
 	}
@@ -86,7 +86,7 @@ public class UsuarioControllerTest {
 		
 		ResponseEntity<Usuario> corpoResposta = testRestTemplate
 				.withBasicAuth("root@root.com", "rootroot")
-				.exchange("/usuario/atualizar", HttpMethod.PUT, corpoRequisicao, Usuario.class);
+				.exchange("/usuarios/atualizar", HttpMethod.PUT, corpoRequisicao, Usuario.class);
 		
 		assertEquals(HttpStatus.OK, corpoResposta.getStatusCode());
 	}
